@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Validation</title>
+  <style>
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h2>Email Validation</h2>
+  <form id="emailForm">
+    <label for="email">Enter Email:</label>
+    <input type="text" id="email" name="email" required>
+    <button type="submit">Validate Email</button>
+  </form>
 
+  <div class="result" id="result"></div>
+
+  <script>
+    function validEmail(str) {
+      // Regular expression for validating the email format
+      const emailPattern = /^[a-zA-Z0-9]+([.-_][a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$/;
+
+      // Test the string against the regex pattern
+      return emailPattern.test(str);
+    }
+
+    // Handle form submission
+    document.getElementById("emailForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the form from refreshing the page
+      const email = document.getElementById("email").value;
+      const resultElement = document.getElementById("result");
+
+      // Display whether the email is valid or not
+      if (validEmail(email)) {
+        resultElement.textContent = "The email address is valid.";
+        resultElement.style.color = "green";
+      } else {
+        resultElement.textContent = "The email address is invalid.";
+        resultElement.style.color = "red";
+      }
+    });
+  </script>
 </body>
-
 </html>
